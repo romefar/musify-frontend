@@ -1,4 +1,4 @@
-import { ArtistShortInfo } from "./ArtistShortInfo";
+import { ArtistShortInfo } from './ArtistShortInfo';
 import { Image } from './Image';
 
 export interface Track {

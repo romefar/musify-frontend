@@ -14,11 +14,12 @@ const covers = [
 
 const randomInterval = (min: number, max: number) => {
   const rand = min + Math.random() * (max + 1 - min);
+
   return Math.floor(rand);
-}
+};
 
 export const getRandomCover = () => {
   const index = randomInterval(0, covers.length - 1);
 
   return covers[index];
-}
+};

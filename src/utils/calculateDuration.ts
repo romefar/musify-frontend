@@ -12,4 +12,4 @@ export const calculateDuration = (duration: number | undefined, ms = true) => {
   const formattedDuration = `${minutes}:${formattedSeconds}`;
 
   return formattedDuration;
-}
+};

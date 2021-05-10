@@ -1,4 +1,4 @@
-import { Image } from "./Image";
+import { Image } from './Image';
 
 export interface ArtistTopInfo {
   name: string;
@@ -8,7 +8,6 @@ export interface ArtistTopInfo {
   image: Image[];
   listeners: number;
 }
-
 
 export interface ArtistTop {
   artists: ArtistTopInfo[];

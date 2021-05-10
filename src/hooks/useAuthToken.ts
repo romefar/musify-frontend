@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react';
 import decode from 'jwt-decode';
+
 import storageService from '../services/StorageService';
 
 export const useAuthToken = () => {
@@ -16,19 +17,19 @@ export const useAuthToken = () => {
   const clearToken = useCallback(() => {
     storageService.removeToken();
     setAuthToken(null);
-    clearInterval(intervalId.current)
+    clearInterval(intervalId.current);
   }, []);
 
   const getUserId = () => {
     if (authToken) {
-      //@ts-ignore
+      // @ts-ignore
       const id = decode(authToken).id;
 
       return id;
     }
 
     return null;
-  }
+  };
 
   useEffect(() => {
     const token = storageService.getToken();
@@ -48,7 +49,7 @@ export const useAuthToken = () => {
 
   useEffect(() => {
     if (authToken) {
-      //@ts-ignore
+      // @ts-ignore
       const expiration = decode(authToken).exp;
 
       // if (!intervalId) {
@@ -59,7 +60,7 @@ export const useAuthToken = () => {
       //   }
       // }
 
-      //@ts-ignore
+      // @ts-ignore
       intervalId.current = setInterval(() => {
         const isTokenInvalid = storageService.checkTokenValidity(expiration);
         console.log(`isTokenInvalid useEffect onload ${isTokenInvalid}`);
@@ -71,8 +72,7 @@ export const useAuthToken = () => {
     }
 
     return () => clearInterval(intervalId.current);
-
   }, [authToken, clearToken]);
 
   return { authToken, isAuthorized, setToken, clearToken, getUserId };
-}
+};

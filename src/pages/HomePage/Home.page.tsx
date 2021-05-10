@@ -10,5 +10,5 @@ export const HomePage = () => {
         <Typography.Title className={styles.subTitle}>Provided by last.fm</Typography.Title>
       </div>
     </div>
-  )
+  );
 };

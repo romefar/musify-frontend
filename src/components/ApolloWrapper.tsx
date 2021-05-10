@@ -1,5 +1,6 @@
 import { ApolloProvider } from '@apollo/client/react';
 import { FC } from 'react';
+
 import { useAppApolloClient } from '../apollo';
 
 export const ApolloWrapper: FC = ({ children }) => {
@@ -9,5 +10,5 @@ export const ApolloWrapper: FC = ({ children }) => {
     <ApolloProvider client={client}>
       {children}
     </ApolloProvider>
-  )
-}
+  );
+};

@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+
 import { AlbumInfo } from '../../components/AlbumInfo';
 import { AlbumInfoOptions } from '../../models';
 
@@ -8,5 +9,5 @@ export const AlbumPage = () => {
 
   return (
     <AlbumInfo options={{ artist, mbid, album }}/>
-  )
+  );
 };

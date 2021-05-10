@@ -1,5 +1,5 @@
-import { AlbumShortInfo } from "./AlbumShortInfo";
-import { ArtistShortInfo } from "./ArtistShortInfo";
+import { AlbumShortInfo } from './AlbumShortInfo';
+import { ArtistShortInfo } from './ArtistShortInfo';
 
 export interface TrackInfo {
   name: string;
@@ -20,4 +20,3 @@ export interface TrackInfo {
 export interface TrackInfoModel {
   track: TrackInfo;
 }
-

@@ -1,21 +1,20 @@
 import { FC } from 'react';
 import { Button } from 'antd';
 import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
+
 import { GET_ALBUM_INFO } from '../../graphql/queries/album';
 import { AlbumInfo as AlbumInfoModel } from '../../models';
-
 import defaultCover from '../../assets/covers/cover2.jpg';
 import { ReactComponent as ListenIcon } from '../../assets/icons/headphones.svg';
 import { ReactComponent as PlayIcon } from '../../assets/icons/play-button.svg';
 import { ReactComponent as PublishIcon } from '../../assets/icons/up-arrow.svg';
 import { ReactComponent as LastFmIcon } from '../../assets/icons/lastfm.svg';
-
-import styles from './AlbumInfo.module.scss';
-import { Link } from 'react-router-dom';
 import { selectImageSize } from '../../utils/selectImageSize';
 import { calculateDuration } from '../../utils/calculateDuration';
 import { Spinner } from '../../shared/Spinner';
 import { ErrorCard } from '../ErrorCard';
+import styles from './AlbumInfo.module.scss';
 
 export interface AlbumInfoProps {
   options: {
@@ -34,8 +33,8 @@ interface AlbumInfoVars {
 export const AlbumInfo: FC<AlbumInfoProps> = ({ options }) => {
   const { loading, error, data } = useQuery<AlbumInfoModel, AlbumInfoVars>(GET_ALBUM_INFO, {
     variables: {
-      ...options
-    }
+      ...options,
+    },
   });
 
   if (loading) {
@@ -62,8 +61,8 @@ export const AlbumInfo: FC<AlbumInfoProps> = ({ options }) => {
             pathname: '/artist',
             state: {
               track: data?.album.artist,
-              mbid: data?.album.mbid
-            }
+              mbid: data?.album.mbid,
+            },
           }}>
             {data?.album?.artist ?? '-'}
           </Link>
@@ -87,7 +86,7 @@ export const AlbumInfo: FC<AlbumInfoProps> = ({ options }) => {
           <p className={styles.albumStatCount}>{`Published: ${data?.album?.wiki?.published ?? '-'}`}</p>
         </div>
         <Button
-          type="link"
+          type='link'
           icon={<LastFmIcon className={styles.lasfmIcon} />}
           className={styles.lastFmLink}
           href={data?.album?.url || '#'}
@@ -109,22 +108,22 @@ export const AlbumInfo: FC<AlbumInfoProps> = ({ options }) => {
                     state: {
                       track: track.name,
                       artist: data.album.artist,
-                    }
+                    },
                   }}>
                     {`${track.name} - ${duration}`}
                   </Link>
                 </li>
-              )
+              );
             })}
           </ol>
         </div>
       )}
       {isWikiInfoExist && (
         <div className={styles.albumSummary}>
-          <p>{data?.album?.wiki?.summary.replace(/<\/?a[^>]*>/g, "")}</p>
-          <p>{data?.album?.wiki?.content.replace(/<\/?a[^>]*>/g, "")}</p>
+          <p>{data?.album?.wiki?.summary.replace(/<\/?a[^>]*>/g, '')}</p>
+          <p>{data?.album?.wiki?.content.replace(/<\/?a[^>]*>/g, '')}</p>
         </div>
       )}
     </section>
-  )
-}
+  );
+};

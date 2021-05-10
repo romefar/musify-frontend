@@ -1,13 +1,14 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
 import { BrowserRouter as Router } from 'react-router-dom';
+
+import App from './components/App';
 import { Layout } from './layout';
 import { ApolloWrapper } from './components/ApolloWrapper';
 import { AuthContextProvider } from './components/AuthContext';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <Router>
       <AuthContextProvider>
         <ApolloWrapper>
@@ -17,6 +18,6 @@ ReactDOM.render(
         </ApolloWrapper>
       </AuthContextProvider>
     </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </StrictMode>,
+  document.getElementById('root'),
 );

@@ -4,4 +4,4 @@ export const TopTrackPage = () => {
   return (
     <TrackChart />
   );
-}
+};

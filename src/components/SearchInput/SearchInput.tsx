@@ -14,12 +14,12 @@ export const SearchInput: FC<SearchInputProps> = ({ placeholder, onSearch }) => 
   return (
     <div className={styles.searchInputContainer}>
       <Search
-        placeholder={placeholder || "Input search text"}
+        placeholder={placeholder || 'Input search text'}
         allowClear
-        enterButton="Search"
-        size="large"
+        enterButton='Search'
+        size='large'
         onSearch={onSearch}
       />
     </div>
-  )
+  );
 };

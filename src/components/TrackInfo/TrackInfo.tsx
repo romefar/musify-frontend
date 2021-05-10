@@ -1,22 +1,21 @@
 import { FC } from 'react';
 import { Button } from 'antd';
 import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
+
 import { GET_TRACK_INFO } from '../../graphql/queries/track';
 import { TrackInfoModel } from '../../models';
-
 import defaultCover from '../../assets/covers/cover1.jpg';
 import { ReactComponent as ListenIcon } from '../../assets/icons/headphones.svg';
 import { ReactComponent as PlayIcon } from '../../assets/icons/play-button.svg';
 import { ReactComponent as DurationIcon } from '../../assets/icons/duration.svg';
 import { ReactComponent as PublishIcon } from '../../assets/icons/up-arrow.svg';
 import { ReactComponent as LastFmIcon } from '../../assets/icons/lastfm.svg';
-
-import styles from './TrackInfo.module.scss';
-import { Link } from 'react-router-dom';
 import { selectImageSize } from '../../utils/selectImageSize';
 import { calculateDuration } from '../../utils/calculateDuration';
 import { Spinner } from '../../shared/Spinner';
 import { ErrorCard } from '../ErrorCard';
+import styles from './TrackInfo.module.scss';
 
 export interface TrackInfoProps {
   options: {
@@ -35,8 +34,8 @@ interface TrackInfoVars {
 export const TrackInfo: FC<TrackInfoProps> = ({ options }) => {
   const { loading, error, data } = useQuery<TrackInfoModel, TrackInfoVars>(GET_TRACK_INFO, {
     variables: {
-     ...options
-    }
+      ...options,
+    },
   });
 
   if (loading) {
@@ -65,7 +64,7 @@ export const TrackInfo: FC<TrackInfoProps> = ({ options }) => {
             state: {
               artist: data?.track?.artist.name,
               mbid: data?.track?.artist.mbid,
-            }
+            },
           }}>
             {data?.track?.artist.name ?? '-'}
           </Link>
@@ -102,15 +101,15 @@ export const TrackInfo: FC<TrackInfoProps> = ({ options }) => {
               state: {
                 artist: data?.track.artist?.name,
                 album: data?.track.album?.title,
-                mbid: data?.track?.album?.mbid
-              }
+                mbid: data?.track?.album?.mbid,
+              },
             }}>
               {data?.track?.album?.title}
             </Link>
           </div>
         )}
         <Button
-          type="link"
+          type='link'
           icon={<LastFmIcon className={styles.lasfmIcon} />}
           className={styles.lastFmLink}
           href={data?.track?.url || '#'}
@@ -120,10 +119,10 @@ export const TrackInfo: FC<TrackInfoProps> = ({ options }) => {
       </div>
       {isWikiInfoExist && (
         <div className={styles.trackSummary}>
-          <p>{data?.track?.wiki?.summary.replace(/<\/?a[^>]*>/g, "")}</p>
-          <p>{data?.track?.wiki?.content.replace(/<\/?a[^>]*>/g, "")}</p>
+          <p>{data?.track?.wiki?.summary.replace(/<\/?a[^>]*>/g, '')}</p>
+          <p>{data?.track?.wiki?.content.replace(/<\/?a[^>]*>/g, '')}</p>
         </div>
       )}
     </section>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import { Image } from "../models/Image";
+import { Image } from '../models/Image';
 
 const MIN_WINDOW_WIDTH = 900;
 
-export const selectImageSize = (images: Image[] ) => {
+export const selectImageSize = (images: Image[]) => {
   if (window.innerWidth > MIN_WINDOW_WIDTH) {
     const item = images.find(i => i.size === 'extralarge');
 
@@ -12,4 +12,4 @@ export const selectImageSize = (images: Image[] ) => {
   const item = images.find(i => i.size === 'medium');
 
   return item ? item.text : undefined;
-}
+};

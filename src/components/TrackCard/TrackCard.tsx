@@ -1,10 +1,10 @@
 import { FC, useMemo } from 'react';
 import LazyLoad from 'react-lazyload';
-import { Track, TrackSearchItem } from '../../models';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
-import { getRandomCover } from '../../utils/getRandomCover';
 
+import { Track, TrackSearchItem } from '../../models';
+import { getRandomCover } from '../../utils/getRandomCover';
 import styles from './TrackCard.module.scss';
 
 export interface TrackCardProps {
@@ -30,7 +30,7 @@ export const TrackCard: FC<TrackCardProps> = (props) => {
     <Card className={styles.trackItem} hoverable bodyStyle={{ padding: '8px 10px' }}>
       <Link to={{
         pathname: '/track',
-        state: trackLink
+        state: trackLink,
       }}>
         <LazyLoad throttle={200} height={300} classNamePrefix={styles.lazyImage}>
           <img src={imageSrc} title={name} alt={name} className={styles.coverImage} />
@@ -42,7 +42,7 @@ export const TrackCard: FC<TrackCardProps> = (props) => {
       <p className={styles.artistName}>
         <Link to={{
           pathname: '/artist',
-          state: artistLink
+          state: artistLink,
         }}>
           {typeof artist === 'string' ? artist : artist.name}
         </Link>

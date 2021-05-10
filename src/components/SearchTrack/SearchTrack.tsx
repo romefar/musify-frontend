@@ -1,12 +1,12 @@
-import { useLazyQuery } from "@apollo/client"
-import { Typography } from "antd";
-import { useState } from "react";
+import { useLazyQuery } from '@apollo/client';
+import { Typography } from 'antd';
+import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
-import { SEARCH_TRACK } from "../../graphql/queries/track"
-import { TrackSearchResult } from "../../models"
-import { SearchInput } from "../SearchInput";
-import { TrackCard } from '../TrackCard';
 
+import { SEARCH_TRACK } from '../../graphql/queries/track';
+import { TrackSearchResult } from '../../models';
+import { SearchInput } from '../SearchInput';
+import { TrackCard } from '../TrackCard';
 import styles from './SearchTrack.module.scss';
 
 interface SearchTrackVars {
@@ -31,7 +31,7 @@ export const SearchTrack = () => {
     <section className={styles.searchTrackContainer}>
       <Typography className={styles.title}>Search tracks</Typography>
       <div className={styles.searchInput}>
-        <SearchInput placeholder="Search by track name" onSearch={(text: string) => {
+        <SearchInput placeholder='Search by track name' onSearch={(text: string) => {
           setSearchText(text);
 
           if (text) {
@@ -40,17 +40,21 @@ export const SearchTrack = () => {
         }}
         />
       </div>
-      {data && data.searchTrack.tracks.length &&<Typography.Paragraph className={styles.resultCount}>{`Found ${data.searchTrack.totalResults} tracks`}</Typography.Paragraph>}
-      {searchText && !data?.searchTrack.tracks.length && !loading && <Typography.Paragraph className={styles.resultCount}>No results</Typography.Paragraph>}
+      {data && data.searchTrack.tracks.length && (
+        <Typography.Paragraph className={styles.resultCount}>{`Found ${data.searchTrack.totalResults} tracks`}</Typography.Paragraph>
+      )}
+      {searchText && !data?.searchTrack.tracks.length && !loading && (
+        <Typography.Paragraph className={styles.resultCount}>No results</Typography.Paragraph>
+      )}
       <InfiniteScroll
         pageStart={data?.searchTrack.page || 1}
         loadMore={(page: number) => {
           if (fetchMore) {
-            fetchMore({ variables: { page, track: searchText } })
+            fetchMore({ variables: { page, track: searchText } });
           }
         }}
         hasMore={!!data?.searchTrack.tracks.length}
-        loader={<div className="loader" key={0}>Loading ...</div>}
+        loader={<div className='loader' key={0}>Loading ...</div>}
         initialLoad={false}
         useWindow={true}
       >
@@ -61,17 +65,17 @@ export const SearchTrack = () => {
               item={track}
               artistLink={{
                 artist: track.artist,
-                mbid: track.mbid
+                mbid: track.mbid,
               }}
               trackLink={{
                 artist: track.artist,
                 track: track.name,
-                mbid: track.mbid
+                mbid: track.mbid,
               }}
             />
           ))}
         </div>
       </InfiniteScroll>
     </section>
-  )
+  );
 };

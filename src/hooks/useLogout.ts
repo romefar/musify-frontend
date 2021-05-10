@@ -1,6 +1,7 @@
-import { useApolloClient } from "@apollo/client";
-import { useContext } from "react";
-import { AuthContext } from "../components/AuthContext";
+import { useApolloClient } from '@apollo/client';
+import { useContext } from 'react';
+
+import { AuthContext } from '../components/AuthContext';
 
 export const useLogout = () => {
   const { clearToken } = useContext(AuthContext);

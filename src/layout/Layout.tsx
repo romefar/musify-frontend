@@ -1,10 +1,10 @@
 import { FC, useContext } from 'react';
 import { Button, Layout as AntLayout, Typography } from 'antd';
-import { NavMenu } from './NavMenu';
 import { Link } from 'react-router-dom';
+
+import { NavMenu } from './NavMenu';
 import { UserBadge } from '../components/UserBadge';
 import { AuthContext } from '../components/AuthContext';
-
 import styles from './Layout.module.scss';
 
 const { Header, Footer, Content } = AntLayout;
@@ -33,5 +33,5 @@ export const Layout: FC = ({ children }) => {
       <Content className={styles.main}>{children}</Content>
       <Footer>Musify, 2021. Powered by lastfm</Footer>
     </AntLayout>
-  )
-}
+  );
+};

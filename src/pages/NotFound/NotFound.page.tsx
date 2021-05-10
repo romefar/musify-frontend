@@ -7,5 +7,5 @@ export const NotFoundPage = () => {
     <div className='main'>
       <NotFoundIcon />
     </div>
-  )
+  );
 };

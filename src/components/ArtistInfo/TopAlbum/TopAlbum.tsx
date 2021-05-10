@@ -1,11 +1,11 @@
 import { FC, useMemo } from 'react';
 import LazyLoad from 'react-lazyload';
-import { Album } from '../../../models';
 import { Card, Button } from 'antd';
 import { Link } from 'react-router-dom';
+
+import { Album } from '../../../models';
 import { ReactComponent as LastFmIcon } from '../../../assets/icons/lastfm.svg';
 import { getRandomCover } from '../../../utils/getRandomCover';
-
 import styles from './TopAlbum.module.scss';
 
 export interface TopAlbumProps {
@@ -24,8 +24,8 @@ export const TopAlbum: FC<TopAlbumProps> = ({ album }) => {
         state: {
           album: name,
           artist: artist?.name,
-          mbid: mbid
-        }
+          mbid: mbid,
+        },
       }}>
         <LazyLoad throttle={200} height={200} classNamePrefix={styles.lazyImage}>
           <img src={coverSrc} title={name} alt={name} className={styles.coverImage} />
@@ -35,7 +35,7 @@ export const TopAlbum: FC<TopAlbumProps> = ({ album }) => {
         </p>
       </Link>
       <Button
-        type="link"
+        type='link'
         icon={<LastFmIcon className={styles.lasfmIcon} />}
         className={styles.lastFmLink}
         href={url || '#'}
@@ -44,4 +44,4 @@ export const TopAlbum: FC<TopAlbumProps> = ({ album }) => {
       </Button>
     </Card>
   );
-}
+};

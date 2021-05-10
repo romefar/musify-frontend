@@ -1,0 +1,51 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'plugin:react/recommended',
+    'standard',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+    '@typescript-eslint',
+  ],
+  rules: {
+    'no-unused-vars': 'off',
+    'eol-last': ['error', 'always'],
+    semi: ['error', 'always'],
+    'newline-before-return': 'warn',
+    quotes: ['error', 'single', { avoidEscape: true }],
+    'jsx-quotes': ['error', 'prefer-single'],
+    'max-len': ['error', { code: 140 }],
+    'quote-props': ['error', 'as-needed'],
+    'comma-dangle': ['error', 'always-multiline'],
+    'object-curly-spacing': ['error', 'always'],
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/await-thenable': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/no-children-prop': 'off',
+    'react/prop-types': 'off',
+    'import/order': ['error', {
+      groups: [['builtin', 'external'], 'internal', ['parent', 'sibling', 'index']],
+      'newlines-between': 'always',
+    }],
+  },
+};

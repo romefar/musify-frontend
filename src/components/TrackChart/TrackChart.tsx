@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client';
 import InfiniteScroll from 'react-infinite-scroller';
+
 import { GET_CHART_TOP_TRACKS } from '../../graphql/queries/track';
 import { TopTrack } from '../../models';
 import { Spinner } from '../../shared/Spinner';
 import { ErrorCard } from '../ErrorCard/';
 import { TrackCard } from '../TrackCard';
-
 import styles from './TrackChart.module.scss';
 
 interface TopTrackData {
@@ -21,8 +21,8 @@ export const TrackChart = () => {
   const { loading, error, data, fetchMore } = useQuery<TopTrackData, TopTrackVars>(GET_CHART_TOP_TRACKS, {
     variables: {
       page: 1,
-      limit: 30
-    }
+      limit: 30,
+    },
   });
 
   if (loading) {
@@ -30,7 +30,7 @@ export const TrackChart = () => {
   }
 
   if (error) {
-    return <ErrorCard />
+    return <ErrorCard />;
   }
 
   return (
@@ -39,10 +39,10 @@ export const TrackChart = () => {
       <InfiniteScroll
         pageStart={data?.topTracks.page || 1}
         loadMore={(page: number) => {
-          fetchMore({ variables: { page } })
+          fetchMore({ variables: { page } });
         }}
         hasMore={!!data?.topTracks.tracks.length}
-        loader={<div className="loader" key={0}>Loading ...</div>}
+        loader={<div className='loader' key={0}>Loading ...</div>}
         initialLoad={false}
         useWindow={true}
       >
@@ -54,7 +54,7 @@ export const TrackChart = () => {
               trackLink={{
                 track: track.name,
                 artist: track.artist.name,
-                mbid: track.mbid
+                mbid: track.mbid,
               }}
               artistLink={{
                 artist: track?.artist?.name,

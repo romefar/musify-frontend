@@ -1,12 +1,12 @@
-import { useLazyQuery } from "@apollo/client"
-import { Typography } from "antd";
-import { useState } from "react";
+import { useLazyQuery } from '@apollo/client';
+import { Typography } from 'antd';
+import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
-import { SEARCH_ALBUM } from "../../graphql/queries/album";
-import { AlbumSearchResult } from "../../models"
-import { AlbumCard } from "../AlbumCard";
-import { SearchInput } from "../SearchInput";
 
+import { SEARCH_ALBUM } from '../../graphql/queries/album';
+import { AlbumSearchResult } from '../../models';
+import { AlbumCard } from '../AlbumCard';
+import { SearchInput } from '../SearchInput';
 import styles from './SearchAlbum.module.scss';
 
 interface SearchAlbumVars {
@@ -31,7 +31,7 @@ export const SearchAlbum = () => {
     <section className={styles.searchAlbumContainer}>
       <Typography className={styles.title}>Search albums</Typography>
       <div className={styles.searchInput}>
-        <SearchInput placeholder="Search by album name" onSearch={(text: string) => {
+        <SearchInput placeholder='Search by album name' onSearch={(text: string) => {
           setSearchText(text);
 
           if (text) {
@@ -40,17 +40,21 @@ export const SearchAlbum = () => {
         }}
         />
       </div>
-      {data && data.searchAlbum.albums.length && <Typography.Paragraph className={styles.resultCount}>{`Found ${data.searchAlbum.totalResults} artists`}</Typography.Paragraph>}
-      {searchText && !data?.searchAlbum.albums.length && !loading && <Typography.Paragraph className={styles.resultCount}>No results</Typography.Paragraph>}
+      {data && data.searchAlbum.albums.length && (
+        <Typography.Paragraph className={styles.resultCount}>{`Found ${data.searchAlbum.totalResults} artists`}</Typography.Paragraph>
+      )}
+      {searchText && !data?.searchAlbum.albums.length && !loading && (
+        <Typography.Paragraph className={styles.resultCount}>No results</Typography.Paragraph>
+      )}
       <InfiniteScroll
         pageStart={data?.searchAlbum.page || 1}
         loadMore={(page: number) => {
           if (fetchMore) {
-            fetchMore({ variables: { page, artist: searchText } })
+            fetchMore({ variables: { page, artist: searchText } });
           }
         }}
         hasMore={hasMore}
-        loader={<div className="loader" key={0}>Loading ...</div>}
+        loader={<div className='loader' key={0}>Loading ...</div>}
         initialLoad={false}
         useWindow={true}
       >
@@ -64,5 +68,5 @@ export const SearchAlbum = () => {
         </div>
       </InfiniteScroll>
     </section>
-  )
+  );
 };

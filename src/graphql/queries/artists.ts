@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+
 import { ARTIST_BASE_INFO, ARTIST_SHORT_INFO, ARTIST_SHORT_INFO_TOP_TRACK } from '../fragments/artist';
 
 export const GET_TOP_ALBUMS = gql`
@@ -60,7 +61,6 @@ export const GET_TOP_TRACKS = gql`
     }
   }
 `;
-
 
 export const GET_ARTIST_FULL_INFO = gql`
   ${ARTIST_BASE_INFO}

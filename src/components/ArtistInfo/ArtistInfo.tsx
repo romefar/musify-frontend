@@ -1,15 +1,11 @@
 import { useQuery } from '@apollo/client';
 import { FC } from 'react';
 import { Button, Divider } from 'antd';
+
 import { GET_ARTIST_FULL_INFO } from '../../graphql/queries/artists';
 import { ArtistFullInfo } from '../../models';
-
-import styles from './ArtistInfo.module.scss';
-
 import { selectImageSize } from '../../utils/selectImageSize';
-
 import defaultCover from '../../assets/covers/cover3.jpg';
-
 import { ReactComponent as ListenIcon } from '../../assets/icons/headphones.svg';
 import { ReactComponent as PlayIcon } from '../../assets/icons/play-button.svg';
 import { ReactComponent as TourIcon } from '../../assets/icons/flight.svg';
@@ -20,7 +16,7 @@ import { TopTrack } from './TopTrack';
 import { TopAlbum } from './TopAlbum';
 import { Spinner } from '../../shared/Spinner';
 import { ErrorCard } from '../ErrorCard';
-
+import styles from './ArtistInfo.module.scss';
 export interface ArtistInfoProps {
   options: {
     artist: string;
@@ -39,7 +35,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({ options }) => {
     variables: {
       ...options,
       limit: 12,
-    }
+    },
   });
 
   const artist = data?.artist;
@@ -80,7 +76,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({ options }) => {
             <div className={styles.artistStatIcon}>
               <TourIcon />
             </div>
-            <p className={styles.artistStatCount}>{`Currently on tour!`}</p>
+            <p className={styles.artistStatCount}>{'Currently on tour!'}</p>
           </div>
         )}
         <div className={styles.artistStatContainer}>
@@ -90,7 +86,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({ options }) => {
           <p className={styles.artistStatCount}>{`Published: ${artist?.bio.published ?? '-'}`}</p>
         </div>
         <Button
-          type="link"
+          type='link'
           icon={<LastFmIcon className={styles.lasfmIcon} />}
           className={styles.lastFmLink}
           href={artist?.url || '#'}
@@ -100,14 +96,14 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({ options }) => {
       </div>
       {isBioAvailable && (
         <div className={styles.artistBio}>
-          <Divider orientation="left">Biography</Divider>
-          <p>{artist?.bio?.summary.replace(/<\/?a[^>]*>/g, "")}</p>
-          <p>{artist?.bio?.content.replace(/<\/?a[^>]*>/g, "")}</p>
+          <Divider orientation='left'>Biography</Divider>
+          <p>{artist?.bio?.summary.replace(/<\/?a[^>]*>/g, '')}</p>
+          <p>{artist?.bio?.content.replace(/<\/?a[^>]*>/g, '')}</p>
         </div>
       )}
       {artist?.similar && (
         <div className={styles.artistAdvanceInfoContainer}>
-         <Divider orientation="left">Similar Artists</Divider>
+         <Divider orientation='left'>Similar Artists</Divider>
           <div className={styles.artistAdvanceInfoItems}>
             {artist.similar.map(item => (
               <SimilarArtist artist={item} key={item.url} />
@@ -117,7 +113,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({ options }) => {
       )}
       {topTracks && (
         <div className={styles.artistAdvanceInfoContainer}>
-          <Divider orientation="left">Top Tracks</Divider>
+          <Divider orientation='left'>Top Tracks</Divider>
           <div className={styles.artistAdvanceInfoItems}>
             {topTracks.map(item => (
               <TopTrack track={item} key={item.url} />
@@ -127,7 +123,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({ options }) => {
       )}
       {topAlbums && (
         <div className={styles.artistAdvanceInfoContainer}>
-          <Divider orientation="left">Top Albums</Divider>
+          <Divider orientation='left'>Top Albums</Divider>
           <div className={styles.artistAdvanceInfoItems}>
             {topAlbums.albums.map(item => (
               <TopAlbum album={item} key={item.url} />
@@ -136,5 +132,5 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({ options }) => {
         </div>
       )}
     </section>
-  )
-}
+  );
+};

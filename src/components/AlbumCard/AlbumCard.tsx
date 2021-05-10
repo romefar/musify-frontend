@@ -2,9 +2,9 @@ import { FC, useMemo } from 'react';
 import LazyLoad from 'react-lazyload';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
+
 import { AlbumSearchItem } from '../../models';
 import { getRandomCover } from '../../utils/getRandomCover';
-
 import styles from './AlbumCard.module.scss';
 
 export interface AlbumCardProps {
@@ -23,8 +23,8 @@ export const AlbumCard: FC<AlbumCardProps> = ({ item }) => {
         state: {
           album: name,
           artist: artist,
-          mbid: mbid
-        }
+          mbid: mbid,
+        },
       }}>
         <LazyLoad throttle={200} height={300} classNamePrefix={styles.lazyImage}>
           <img src={coverSrc} title={name} alt={name} className={styles.coverImage} />
@@ -38,11 +38,11 @@ export const AlbumCard: FC<AlbumCardProps> = ({ item }) => {
           pathname: '/artist',
           state: {
             artist: artist,
-          }
+          },
         }}>
           {artist}
         </Link>
       </p>
     </Card>
   );
-}
+};

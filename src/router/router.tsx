@@ -1,4 +1,5 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
+
 import { AlbumPage } from '../pages/AlbumInfoPage';
 import { AlbumSearchPage } from '../pages/AlbumSearchPage';
 import { ArtistPage } from '../pages/ArtistPage';
@@ -47,7 +48,7 @@ export const AppRouter = () => {
       <Route exact path='/auth'>
         <AuthPage />
       </Route>
-      <Redirect from="*" to="/404" />
+      <Redirect from='*' to='/404' />
     </Switch>
-  )
-}
+  );
+};

@@ -1,18 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useState } from 'react';
 import { Input, Button, Divider } from 'antd';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller } from 'react-hook-form';
+import { useMutation } from '@apollo/client';
+import { useHistory } from 'react-router';
 
-import { signInSchema, signUpSchema } from "./schemaValidation";
-import { FormFields } from "./fields";
-
+import { signInSchema, signUpSchema } from './schemaValidation';
+import { FormFields } from './fields';
+import { CreatedUser } from '../../models';
+import { CREATE_USER } from '../../graphql/mutations/user';
+import { useLogin } from '../../hooks/useLogin';
+import { AuthContext } from '../AuthContext';
 import styles from './AuthForm.module.scss';
-import { useMutation } from "@apollo/client";
-import { CreatedUser } from "../../models";
-import { CREATE_USER } from "../../graphql/mutations/user";
-import { useHistory } from "react-router";
-import { useLogin } from "../../hooks/useLogin";
-import { AuthContext } from "../AuthContext";
 
 interface AuthFormState {
   [FormFields.email]: string;
@@ -33,7 +32,7 @@ interface CreateUserVars {
 export const AuthForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const { setToken } = useContext(AuthContext);
-  const { login, isLoading } = useLogin({ redirect: true })
+  const { login, isLoading } = useLogin({ redirect: true });
   const history = useHistory();
 
   const [createUser, { loading }] = useMutation<CreatedUser, CreateUserVars>(CREATE_USER, {
@@ -45,7 +44,7 @@ export const AuthForm = () => {
 
         history.replace('/');
       }
-    }
+    },
   });
 
   const resolver = isSignUp
@@ -63,19 +62,18 @@ export const AuthForm = () => {
           userInput: {
             email: data.email,
             name: data.userName,
-            password: data.password
-          }
-        }
+            password: data.password,
+          },
+        },
       });
 
       return;
     }
 
     login({
-      email: data['email'],
-      password: data['password']
+      email: data.email,
+      password: data.password,
     });
-
   });
 
   return (
@@ -164,5 +162,5 @@ export const AuthForm = () => {
         </div>
       </form>
     </section>
-  )
+  );
 };

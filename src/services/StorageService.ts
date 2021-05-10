@@ -7,7 +7,7 @@ interface IStorageService {
 class StorageService implements IStorageService {
   private readonly tokenName = 'userToken';
 
-  getToken() {
+  getToken () {
     try {
       const rawToken = localStorage.getItem(this.tokenName);
 
@@ -27,7 +27,7 @@ class StorageService implements IStorageService {
     return Date.now() >= expiration * 1000;
   }
 
-  saveToken(userToken: string) {
+  saveToken (userToken: string) {
     try {
       const tokenJSON = JSON.stringify(userToken);
       localStorage.setItem(this.tokenName, tokenJSON);
@@ -38,7 +38,7 @@ class StorageService implements IStorageService {
     }
   }
 
-  removeToken() {
+  removeToken () {
     localStorage.removeItem(this.tokenName);
   }
 }

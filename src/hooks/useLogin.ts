@@ -1,9 +1,10 @@
 import { useContext } from 'react';
-import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router";
-import { AuthContext } from "../components/AuthContext";
-import { LOGIN_USER } from "../graphql/mutations/auth";
-import { UserLogin } from "../models";
+import { useMutation } from '@apollo/client';
+import { useHistory } from 'react-router';
+
+import { AuthContext } from '../components/AuthContext';
+import { LOGIN_USER } from '../graphql/mutations/auth';
+import { UserLogin } from '../models';
 
 interface LoginUserVars {
   password: string;
@@ -28,10 +29,10 @@ export const useLogin = (options: LoginOptions) => {
         setToken(token);
 
         if (redirect) {
-          history.replace(to || '/')
+          history.replace(to || '/');
         }
       }
-    }
+    },
   });
 
   const login = (options: LoginUserVars) => {
@@ -39,9 +40,9 @@ export const useLogin = (options: LoginOptions) => {
       variables: {
         email: options.email,
         password: options.password,
-      }
-    })
-  }
+      },
+    });
+  };
 
   return { login, isLoading };
-}
+};

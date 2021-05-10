@@ -1,4 +1,4 @@
-import { ArtistTopInfo } from "./ArtistTop";
+import { ArtistTopInfo } from './ArtistTop';
 
 export interface ArtistSearchResult {
   totalResults: number;

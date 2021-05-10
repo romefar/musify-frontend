@@ -1,11 +1,11 @@
 import { FC, useMemo } from 'react';
 import LazyLoad from 'react-lazyload';
-import { ArtistTopTrack } from '../../../models';
 import { Card, Button } from 'antd';
 import { Link } from 'react-router-dom';
+
+import { ArtistTopTrack } from '../../../models';
 import { ReactComponent as LastFmIcon } from '../../../assets/icons/lastfm.svg';
 import { getRandomCover } from '../../../utils/getRandomCover';
-
 import styles from './TopTrack.module.scss';
 
 export interface TopTrackProps {
@@ -24,8 +24,8 @@ export const TopTrack: FC<TopTrackProps> = ({ track }) => {
         state: {
           track: name,
           artist: artist?.name,
-          mbid: mbid
-        }
+          mbid: mbid,
+        },
       }}>
         <LazyLoad throttle={200} height={200} classNamePrefix={styles.lazyImage}>
           <img src={coverSrc} title={name} alt={name} className={styles.coverImage} />
@@ -35,7 +35,7 @@ export const TopTrack: FC<TopTrackProps> = ({ track }) => {
         </p>
       </Link>
       <Button
-        type="link"
+        type='link'
         icon={<LastFmIcon className={styles.lasfmIcon} />}
         className={styles.lastFmLink}
         href={url || '#'}
@@ -44,4 +44,4 @@ export const TopTrack: FC<TopTrackProps> = ({ track }) => {
       </Button>
     </Card>
   );
-}
+};
