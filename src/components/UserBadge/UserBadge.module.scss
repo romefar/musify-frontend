@@ -1,0 +1,12 @@
+.userBadge {
+  display: grid;
+  grid-template-columns: 50px 1fr auto;
+  align-items: center;
+
+  .userName {
+    margin: 0 10px;
+    color: white;
+    text-align: center;
+    font-size: 1rem;
+  }
+}

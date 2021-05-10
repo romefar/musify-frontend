@@ -1,0 +1,38 @@
+.trackItem {
+  max-width: 320px;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  transition: box-shadow 0.3s, border-color 0.3s, transform 0.4s !important;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  .lazyImage {
+    display: flex;
+    justify-content: center;
+  }
+
+  .coverImage {
+    object-fit: contain;
+    width: 300px;
+  }
+
+  .songName {
+    font-size: 1.1rem;
+    margin: 0;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .artistName {
+    font-size: 1rem;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+}

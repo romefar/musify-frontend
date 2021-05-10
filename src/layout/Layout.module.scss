@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+.layout {
+  display: grid;
+  grid-template-rows: 64px 1fr 68px;
+  min-height: 100vh;
+
+  .main {
+    padding: 10px 20px;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .appName {
+    font-family: 'Zen Dots', sans-serif;
+    color: white;
+    font-size: 2rem;
+    margin-right: 20px;
+    font-weight: bold;
+  }
+
+  .appLink {
+    color: inherit;
+  }
+}
